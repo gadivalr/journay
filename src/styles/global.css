@@ -398,19 +398,6 @@ main {
 }
 
 /* ---------- Artículo ---------- */
-.back-link {
-  display: inline-block;
-  margin-bottom: 1.4rem;
-  font-family: var(--font-sans);
-  font-size: 0.875rem;
-  color: var(--text-muted);
-}
-
-.back-link:hover {
-  color: var(--accent);
-  text-decoration: none;
-}
-
 .post__header {
   margin-bottom: 1.8rem;
 }
