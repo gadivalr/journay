@@ -1,0 +1,43 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostList from '../../components/PostList.astro';
+import { getPublishedPosts, tagSlug, type Post } from '../../lib/posts';
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts();
+
+  const tags = new Map<string, { label: string; posts: Post[] }>();
+
+  for (const post of posts) {
+    for (const tag of post.data.tags) {
+      const slug = tagSlug(tag);
+      if (!slug) continue;
+
+      let group = tags.get(slug);
+      if (!group) {
+        group = { label: tag, posts: [] };
+        tags.set(slug, group);
+      }
+      group.posts.push(post);
+    }
+  }
+
+  return [...tags.entries()].map(([slug, group]) => ({
+    params: { tag: slug },
+    props: { label: group.label, posts: group.posts },
+  }));
+}
+
+const { label, posts } = Astro.props;
+---
+
+<Base title={label} description={`Entradas etiquetadas con ${label}.`}>
+  <p class="hero__eyebrow">Tag</p>
+  <h1 class="page-title">{label}</h1>
+  <p class="page-intro">
+    {posts.length} {posts.length === 1 ? 'entrada' : 'entradas'} con esta
+    etiqueta.
+  </p>
+
+  <PostList posts={posts} />
+</Base>

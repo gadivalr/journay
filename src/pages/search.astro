@@ -1,0 +1,168 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Buscar" description="Busca entre las entradas del diario.">
+  <h1 class="page-title">Buscar</h1>
+  <p class="page-intro">
+    Filtra por título, etiquetas, descripción o contenido.
+  </p>
+
+  <label class="visually-hidden" for="q">Buscar entradas</label>
+  <input
+    id="q"
+    class="search-input"
+    type="search"
+    placeholder="Escribe una palabra…"
+    autocomplete="off"
+    spellcheck="false"
+  />
+
+  <p id="search-status" class="search-status" role="status" aria-live="polite">
+    Escribe para empezar a buscar.
+  </p>
+
+  <ul id="search-results" class="search-results"></ul>
+</Base>
+
+<script is:inline>
+  (function () {
+    var input = document.getElementById('q');
+    var statusEl = document.getElementById('search-status');
+    var resultsEl = document.getElementById('search-results');
+
+    if (!input || !statusEl || !resultsEl) return;
+
+    var index = [];
+    var idleMessage = 'Escribe para empezar a buscar.';
+
+    var normalize = function (value) {
+      return String(value)
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '');
+    };
+
+    var escapeHtml = function (value) {
+      return String(value).replace(/[&<>"']/g, function (ch) {
+        return {
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#39;',
+        }[ch];
+      });
+    };
+
+    var score = function (item, terms) {
+      var title = normalize(item.title);
+      var tags = normalize(item.tags.join(' '));
+      var description = normalize(item.description);
+      var body = normalize(item.body);
+      var total = 0;
+
+      for (var i = 0; i < terms.length; i++) {
+        var term = terms[i];
+        var hit = 0;
+        if (title.indexOf(term) !== -1) hit += 5;
+        if (tags.indexOf(term) !== -1) hit += 3;
+        if (description.indexOf(term) !== -1) hit += 2;
+        if (body.indexOf(term) !== -1) hit += 1;
+        if (hit === 0) return -1;
+        total += hit;
+      }
+
+      return total;
+    };
+
+    var highlight = function (text, terms) {
+      var safe = escapeHtml(text);
+      for (var i = 0; i < terms.length; i++) {
+        var term = terms[i].replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        if (!term) continue;
+        safe = safe.replace(new RegExp('(' + term + ')', 'gi'), '<mark>$1</mark>');
+      }
+      return safe;
+    };
+
+    var render = function () {
+      var terms = normalize(input.value).trim().split(/\s+/).filter(Boolean);
+
+      if (terms.length === 0) {
+        statusEl.textContent = idleMessage;
+        resultsEl.innerHTML = '';
+        return;
+      }
+
+      var matches = index
+        .map(function (item) {
+          return { item: item, points: score(item, terms) };
+        })
+        .filter(function (entry) {
+          return entry.points >= 0;
+        })
+        .sort(function (a, b) {
+          return b.points - a.points;
+        });
+
+      statusEl.textContent =
+        matches.length === 0
+          ? 'Sin resultados'
+          : matches.length +
+            (matches.length === 1 ? ' resultado' : ' resultados');
+
+      resultsEl.innerHTML = matches
+        .map(function (entry) {
+          var item = entry.item;
+          var tags = item.tags.length
+            ? ' · ' +
+              item.tags
+                .map(function (tag) {
+                  return escapeHtml(tag);
+                })
+                .join(' ')
+            : '';
+
+          return (
+            '<li class="search-result">' +
+            '<a href="/posts/' +
+            item.slug +
+            '/">' +
+            highlight(item.title, terms) +
+            '</a>' +
+            (item.description
+              ? '<p>' + highlight(item.description, terms) + '</p>'
+              : '') +
+            '<p class="search-result__meta">' +
+            escapeHtml(item.dateLabel) +
+            tags +
+            '</p>' +
+            '</li>'
+          );
+        })
+        .join('');
+    };
+
+    var timer;
+    input.addEventListener('input', function () {
+      clearTimeout(timer);
+      timer = setTimeout(render, 120);
+    });
+
+    var initial = new URLSearchParams(window.location.search).get('q');
+    if (initial) input.value = initial;
+
+    fetch('/search-index.json')
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        index = Array.isArray(data) ? data : [];
+        if (input.value.trim()) render();
+      })
+      .catch(function () {
+        statusEl.textContent = 'No se pudo cargar el índice de búsqueda.';
+      });
+  })();
+</script>

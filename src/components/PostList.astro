@@ -1,0 +1,41 @@
+---
+import { formatDate, readingTime, tagSlug, type Post } from '../lib/posts';
+
+interface Props {
+  posts: Post[];
+}
+
+const { posts } = Astro.props;
+---
+
+<ul class="post-list">
+  {
+    posts.map((post) => {
+      const { title, description, date, tags } = post.data;
+      return (
+        <li class="post-item">
+          <p class="post-item__meta">
+            <time datetime={date.toISOString()}>{formatDate(date)}</time>
+            <span aria-hidden="true">·</span>
+            <span>{readingTime(post.body)} min de lectura</span>
+          </p>
+          <h2 class="post-item__title">
+            <a href={`/posts/${post.id}/`}>{title}</a>
+          </h2>
+          {description && <p class="post-item__desc">{description}</p>}
+          {tags.length > 0 && (
+            <ul class="tag-row">
+              {tags.map((tag) => (
+                <li>
+                  <a class="tag" href={`/tags/${tagSlug(tag)}/`}>
+                    {tag}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
+        </li>
+      );
+    })
+  }
+</ul>

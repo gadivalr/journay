@@ -1,0 +1,73 @@
+---
+import Base from '../layouts/Base.astro';
+import { getPublishedPosts, formatMonth, type Post } from '../lib/posts';
+
+interface MonthGroup {
+  label: string;
+  posts: Post[];
+}
+
+interface YearGroup {
+  year: number;
+  months: MonthGroup[];
+}
+
+const posts = await getPublishedPosts();
+
+const years: YearGroup[] = [];
+
+for (const post of posts) {
+  const year = post.data.date.getUTCFullYear();
+  const month = post.data.date.getUTCMonth();
+
+  let yearGroup = years.find((group) => group.year === year);
+  if (!yearGroup) {
+    yearGroup = { year, months: [] };
+    years.push(yearGroup);
+  }
+
+  let monthGroup = yearGroup.months.find(
+    (group) => group.label === formatMonth(post.data.date),
+  );
+  if (!monthGroup) {
+    monthGroup = { label: formatMonth(post.data.date), posts: [] };
+    yearGroup.months.push(monthGroup);
+  }
+
+  monthGroup.posts.push(post);
+}
+---
+
+<Base title="Archivo">
+  <h1 class="page-title">Archivo</h1>
+  <p class="page-intro">Todas las entradas, ordenadas por fecha.</p>
+
+  {
+    years.length === 0 ? (
+      <p class="page-intro">Aún no hay entradas.</p>
+    ) : (
+      <div class="archive">
+        {years.map((yearGroup) => (
+          <section class="archive__year">
+            <h2>{yearGroup.year}</h2>
+            {yearGroup.months.map((monthGroup) => (
+              <div class="archive__month">
+                <h3>{monthGroup.label}</h3>
+                <ul>
+                  {monthGroup.posts.map((post) => (
+                    <li>
+                      <time datetime={post.data.date.toISOString()}>
+                        {String(post.data.date.getUTCDate()).padStart(2, '0')}
+                      </time>
+                      <a href={`/posts/${post.id}/`}>{post.data.title}</a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </section>
+        ))}
+      </div>
+    )
+  }
+</Base>

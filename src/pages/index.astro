@@ -1,0 +1,29 @@
+---
+import Base from '../layouts/Base.astro';
+import PostList from '../components/PostList.astro';
+import { SITE } from '../consts';
+import { getPublishedPosts } from '../lib/posts';
+
+const posts = await getPublishedPosts();
+---
+
+<Base title="Inicio">
+  <section class="hero">
+    <p class="hero__eyebrow">Diario personal</p>
+    <h1 class="hero__title">
+      Pensamientos sueltos, notas y pequeñas historias.
+    </h1>
+    <p class="hero__text">{SITE.intro}</p>
+  </section>
+
+  {
+    posts.length > 0 ? (
+      <PostList posts={posts} />
+    ) : (
+      <p class="page-intro">
+        Todavía no hay entradas. Crea tu primer archivo en
+        <code>src/content/posts/</code>.
+      </p>
+    )
+  }
+</Base>

@@ -1,0 +1,59 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { formatDate, readingTime, tagSlug } from '../../lib/posts';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts', ({ data }) =>
+    import.meta.env.PROD ? !data.draft : true,
+  );
+
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const { title, description, date, updated, tags } = post.data;
+---
+
+<Base title={title} description={description}>
+  <a class="back-link" href="/">← Volver al inicio</a>
+
+  <article class="post">
+    <header class="post__header">
+      <p class="post__meta">
+        <time datetime={date.toISOString()}>{formatDate(date)}</time>
+        <span aria-hidden="true">·</span>
+        <span>{readingTime(post.body)} min de lectura</span>
+      </p>
+      <h1 class="post__title">{title}</h1>
+      {description && <p class="post__desc">{description}</p>}
+      {
+        tags.length > 0 && (
+          <ul class="tag-row">
+            {tags.map((tag) => (
+              <li>
+                <a class="tag" href={`/tags/${tagSlug(tag)}/`}>
+                  {tag}
+                </a>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </header>
+
+    <div class="prose">
+      <Content />
+    </div>
+
+    {
+      updated && (
+        <p class="post__updated">Actualizado el {formatDate(updated)}.</p>
+      )
+    }
+  </article>
+</Base>
