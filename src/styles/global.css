@@ -59,7 +59,7 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-serif);
-  font-size: 1.0625rem;
+  font-size: 1rem;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -265,7 +265,7 @@ main {
 }
 
 .hero__title {
-  font-size: clamp(2rem, 5vw, 2.6rem);
+  font-size: clamp(1.75rem, 4.5vw, 2.2rem);
   line-height: 1.18;
   letter-spacing: -0.02em;
   font-weight: 600;
@@ -273,7 +273,7 @@ main {
 }
 
 .hero__text {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   line-height: 1.5;
   color: var(--text-soft);
   max-width: 38rem;
@@ -282,7 +282,7 @@ main {
 
 /* Títulos de página (archivo, tags, buscar) */
 .page-title {
-  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  font-size: clamp(1.6rem, 4.5vw, 2.2rem);
   line-height: 1.18;
   letter-spacing: -0.02em;
   font-weight: 600;
@@ -322,7 +322,7 @@ main {
 }
 
 .post-item__title {
-  font-size: 1.28rem;
+  font-size: 1.15rem;
   line-height: 1.25;
   letter-spacing: -0.01em;
   font-weight: 600;
@@ -427,7 +427,7 @@ main {
 }
 
 .post__title {
-  font-size: clamp(2rem, 7vw, 3rem);
+  font-size: clamp(1.75rem, 6vw, 2.5rem);
   line-height: 1.16;
   letter-spacing: -0.025em;
   font-weight: 600;
@@ -435,7 +435,7 @@ main {
 }
 
 .post__desc {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   line-height: 1.5;
   color: var(--text-soft);
   margin: 0 0 0.9rem;
@@ -458,7 +458,7 @@ main {
 
 /* ---------- Prosa (contenido Markdown) ---------- */
 .prose {
-  font-size: 1.125rem;
+  font-size: 1.0625rem;
   line-height: 1.62;
 }
 
