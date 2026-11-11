@@ -21,4 +21,6 @@ Hay algo liberador en escribir para un público que no existe. Sin lectores imag
 
 Supongo que este diario es un intento de lo segundo. Un sitio donde equivocarme no cuesta nada.
 
-veamos como funciona
+veamos como funciona 
+
+![Screenshot_20261109_000350_Instagram_1](_res/Screenshot_20261109_000350_Instagram_1.jpg)
