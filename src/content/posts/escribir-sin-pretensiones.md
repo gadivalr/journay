@@ -20,3 +20,5 @@ Hay algo liberador en escribir para un público que no existe. Sin lectores imag
 > Si escribes para impresionar, escribes para fuera. Si escribes para entenderte, escribes para dentro.
 
 Supongo que este diario es un intento de lo segundo. Un sitio donde equivocarme no cuesta nada.
+
+veamos como funciona
