@@ -1,5 +1,5 @@
 ---
-title: Sobre lo que somos, lo que cambia y lo que pertenece
+title: Sobre lo que somos, lo que cambia y lo que permanece
 description: "Panta rei"
 date: 2026-11-14
 tags: [reflexión]
@@ -13,9 +13,9 @@ Desmemoria - Alejandra Pizarnik
 
 Quizás esté demasiado influenciado por Tolstói. Estoy volviendo a leer *La muerte de Iván Ilich*.
 
-Vamos a imaginar, como el, que todo lo que escribo es hipotético, pura ficción. La cuestiones que creo que, para poder escribir, es necesario vivir mucho, ya sea a través de nuestras propias experiencias o de las vidas de otros. Es imposible establecer una línea clara entre lo real y lo imaginario; normalmente se entrelazan tanto que resulta tedioso distinguirlos. Al igual que Virginia Wolf en el British Museum, yo también he hcho una larga lista de ideas desordenadas y me he angustiado al tratar de organizarlas de un modo medianamente comprensible. Muchas veces siento que escribo peor de lo que pienso.
+Vamos a imaginar, como el, que todo lo que escribo es hipotético, pura ficción. La cuestiones que creo que, para poder escribir, es necesario vivir mucho, ya sea a través de nuestras propias experiencias o de las vidas de otros. Es imposible establecer una línea clara entre lo real y lo imaginario; normalmente se entrelazan tanto que resulta tedioso distinguirlos. Al igual que Virginia Wolf en el British Museum, yo también he hecho una larga lista de ideas desordenadas y me he angustiado al tratar de organizarlas de un modo medianamente comprensible. Muchas veces siento que escribo peor de lo que pienso.
 
-He comenzado a leer un poco sobre filosofía teórica y práctica y, desde hace algunos días, no dejo de darle vueltas a la idea de *panta rei* que se suele asociar a Heráclito: todo fluye, todo cambia. He estado pensando en mí, en todo lo que mi vida - y, por tanto, yo mismo - he cambiado en los últimos meses, casi de manera radical  ¿Sigo siendo el mismo? ¿Las versiones anteriores de mí han desaparecido? ¿En qué momento dejamos de ser la persona que éramos, si nunca hay un instante exacto en el que ocurra esa ruptura? Demasiadas preguntas.
+He comenzado a leer un poco sobre filosofía teórica y práctica y, desde hace algunos días, no dejo de darle vueltas a la idea de *panta rei* que se suele asociar a Heráclito: todo fluye, todo cambia. He estado pensando en mí, en todo lo que mi vida - y, por tanto, yo mismo - ha cambiado en los últimos meses, casi de manera radical  ¿Sigo siendo el mismo? ¿Las versiones anteriores de mí han desaparecido? ¿En qué momento dejamos de ser la persona que éramos, si nunca hay un instante exacto en el que ocurra esa ruptura? Demasiadas preguntas.
 
 Cuando la nostalgia me apesa por un rato y miro hacia atrás, a veces no me reconozco del todo. Veo a una persona que recuerdo, pero al que no termino de conocer. Pienso en sus preocupaciones, sus deseos, las cosas que le parecían indispensables y que ahora apenas ocupan un lugar en mi vida. Cuántas cosas que me dolían han pasado a darme exactamente igual; cuántas personas de mi vida que ya casi no recuerdo.
 
