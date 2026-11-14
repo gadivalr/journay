@@ -1,6 +1,6 @@
 ---
 title: Sobre lo que somos, lo que cambia y lo que pertenece
-description: Panta rei: Todo fluye, todo cambia
+description: "Panta rei: Todo fluye, todo cambia"
 date: 2026-11-14
 tags: [reflexión]
 ---
