@@ -1,6 +1,6 @@
 ---
 title: Sobre lo que somos, lo que cambia y lo que pertenece
-description: "Panta rei: Todo fluye, todo cambia"
+description: "Panta rei"
 date: 2026-11-14
 tags: [reflexión]
 ---
@@ -8,6 +8,7 @@ tags: [reflexión]
 > Aunque la voz (su olvido vólcandome náufragas que son yo) 
 >oficia en un jardín petrificado
 > recuerdo con todas mis vidas por qué olvido
+
 Desmemoria - Alejandra Pizarnik
 
 Quizás esté demasiado influenciado por Tolstói. Estoy volviendo a leer *La muerte de Iván Ilich*.
